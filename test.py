@@ -14,7 +14,7 @@ def test_get_updates():
 	print('Please send a message')
 	incoming_text = input("Sent text: ")
 	latest_message = bot.get_latest_message()
-	assert latest_message['message']['text'] == incoming_text, "Fetched message text doesn't match"
+	assert latest_message.message_text == incoming_text, "Fetched message text doesn't match"
 
 def test_send():
 	print('Sending random string')
@@ -46,8 +46,8 @@ def test_register_handler():
 	assert handler_output == recv, 'Handler output does not match expected'
 
 
-# test_get_updates()
-# test_send()
+test_get_updates()
+test_send()
 test_register_handler()
 
 
