@@ -1,6 +1,8 @@
+
 import time
 import gc
 import os
+
 
 machine = os.uname().machine
 if 'ESP32' in machine:
@@ -82,7 +84,7 @@ class ubot(object):
             'timeout': timeout,
             'allowed_updates': allowed_updates
         }        
-        getUpdatesURL = f'{self.url}/getUpdates'
+        getUpdatesURL = '%s/getUpdates' % self.url
         try:            
             updates = urequests.post(getUpdatesURL, json=query_options)
             return updates.json()['result']
@@ -108,7 +110,7 @@ class ubot(object):
             'Content-type': 'application/json', 
             'Accept': 'text/plain'
         }        
-        sendMessageURL = f'{self.url}/sendMessage'                
+        sendMessageURL = '%s/sendMessage' % self.url
         try:
             response = urequests.post(sendMessageURL, json=data, headers=headers)
         except Exception as e:
