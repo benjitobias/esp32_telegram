@@ -87,6 +87,7 @@ class ubot(object):
         getUpdatesURL = '%s/getUpdates' % self.url
         try:            
             updates = urequests.post(getUpdatesURL, json=query_options)
+            updates.close() # manually close socket to stop memory overload
             return updates.json()['result']
         except (ValueError):
             self.print('No updates available', DEBUG)
@@ -113,6 +114,7 @@ class ubot(object):
         sendMessageURL = '%s/sendMessage' % self.url
         try:
             response = urequests.post(sendMessageURL, json=data, headers=headers)
+            response.close() # manually close socket to stop memory overload
         except Exception as e:
             self.print('Error sending message: %s' % e, ERROR)
 
