@@ -114,7 +114,7 @@ class ubot(object):
         try:
             response = urequests.post(sendMessageURL, json=data, headers=headers)
         except Exception as e:
-            self.print(f'Error sending message: {e}', ERROR)
+            self.print('Error sending message: %s' % e, ERROR)
 
     def message_handler(self, message):                        
         if message.cmd in self.commands:
@@ -138,4 +138,4 @@ class ubot(object):
 
     def print(self, message, level=INFO):
         if level <= self.print_level:
-            print(f'[telegram] {level}: {message}')
+            print('[telegram] %s: %s' % (level, message))
